@@ -95,7 +95,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ? GlobalVariables.backgroundColor
                   : GlobalVariables.greyBackgroundColor,
               title: const Text(
-                'Sign-In.',
+                'Sign In.',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               leading: Radio<Auth>(
