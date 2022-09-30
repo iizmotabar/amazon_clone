@@ -1,4 +1,4 @@
-# amazon_clone_app
+# Amazon Clone App Using Flutter and NodeJs
 
 A new Flutter project.
 
