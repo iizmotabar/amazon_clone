@@ -1,3 +1,4 @@
+import 'package:amazon_clone_app/services/auth_service.dart';
 import 'package:amazon_clone_app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -16,11 +17,12 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth? _authInstance = Auth.CreateAccount;
-  final GlobalKey _createAccountFormKey = GlobalKey<FormState>();
+  final GlobalKey _registerFormKey = GlobalKey<FormState>();
   final GlobalKey _signInFormKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   @override
   void dispose() {
@@ -28,6 +30,11 @@ class _AuthScreenState extends State<AuthScreen> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  void signUpUser() {
+    _authService.signUp(_emailController.text, _passwordController.text,
+        _nameController.text, context);
   }
 
   @override
@@ -69,7 +76,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 color: GlobalVariables.backgroundColor,
                 padding: const EdgeInsets.all(8.0),
                 child: Form(
-                  key: _createAccountFormKey,
+                  key: _registerFormKey,
                   child: Column(children: [
                     CustomTextField(
                       hintText: 'Name',
@@ -86,7 +93,12 @@ class _AuthScreenState extends State<AuthScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomButton(text: 'Sign Up', onPressed: () {}),
+                    CustomButton(text: 'Sign Up', onPressed: () {
+                      // if(_registerFormKey.currentState!.validate()){
+
+                        // signUpUser();
+                      // }
+                    }),
                   ]),
                 ),
               ),
@@ -114,7 +126,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 color: GlobalVariables.backgroundColor,
                 padding: const EdgeInsets.all(8.0),
                 child: Form(
-                  key: _createAccountFormKey,
+                  key: _registerFormKey,
                   child: Column(children: [
                     CustomTextField(
                       hintText: 'Email',
