@@ -19,7 +19,6 @@ void httpErrorHandling(
       showSnackbar(context, '${response.statusCode}: Internal Server Error');
       break;
     default:
-      showSnackbar(context, response.body);
-      
+      showSnackbar(context, response.statusCode.toString());
   }
 }

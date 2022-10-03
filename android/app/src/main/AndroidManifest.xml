@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iizmotabar.amazon_clone_app">
+  <uses-permission android:name="android.permission.INTERNET"/> <!-- Add this -->
    <application
         android:label="amazon_clone_app"
         android:name="${applicationName}"
