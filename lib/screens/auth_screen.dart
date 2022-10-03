@@ -17,12 +17,12 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth? _authInstance = Auth.CreateAccount;
-  final GlobalKey _registerFormKey = GlobalKey<FormState>();
-  final GlobalKey _signInFormKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService();
+  final _registerFormKey = GlobalKey<FormState>();
+  final _signInFormKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _authService = AuthService();
 
   @override
   void dispose() {
@@ -33,8 +33,13 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signUpUser() {
-    _authService.signUp(_emailController.text, _passwordController.text,
+    _authService.signUpUser(_emailController.text, _passwordController.text,
         _nameController.text, context);
+  }
+
+  void signInUser() {
+    _authService.signInUser(
+        _emailController.text, _passwordController.text, context);
   }
 
   @override
@@ -93,12 +98,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomButton(text: 'Sign Up', onPressed: () {
-                      // if(_registerFormKey.currentState!.validate()){
-
-                        // signUpUser();
-                      // }
-                    }),
+                    CustomButton(
+                        text: 'Sign Up',
+                        onPressed: () {
+                          if (_registerFormKey.currentState!.validate()) {
+                            signUpUser();
+                          }
+                        }),
                   ]),
                 ),
               ),
@@ -126,7 +132,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 color: GlobalVariables.backgroundColor,
                 padding: const EdgeInsets.all(8.0),
                 child: Form(
-                  key: _registerFormKey,
+                  key: _signInFormKey,
                   child: Column(children: [
                     CustomTextField(
                       hintText: 'Email',
@@ -139,7 +145,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    CustomButton(text: 'Sign Up', onPressed: () {}),
+                    CustomButton(
+                        text: 'Sign Up',
+                        onPressed: () {
+                          if (_signInFormKey.currentState!.validate()) {
+                            signInUser();
+                          }
+                        }),
                   ]),
                 ),
               ),

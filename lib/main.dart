@@ -1,10 +1,14 @@
 import 'package:amazon_clone_app/constants/global_variables.dart';
+import 'package:amazon_clone_app/providers/user_provider.dart';
 import 'package:amazon_clone_app/router.dart';
 import 'package:amazon_clone_app/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
