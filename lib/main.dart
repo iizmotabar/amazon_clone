@@ -1,9 +1,12 @@
 import 'package:amazon_clone_app/constants/global_variables.dart';
 import 'package:amazon_clone_app/providers/user_provider.dart';
 import 'package:amazon_clone_app/router.dart';
-import 'package:amazon_clone_app/screens/auth_screen.dart';
+import 'package:amazon_clone_app/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone_app/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'services/auth_service.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -11,8 +14,22 @@ void main() {
   ], child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final authService = AuthService();
+
+  @override
+  void initState() {
+    authService.getUserData(context);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +45,9 @@ class MyApp extends StatelessWidget {
             elevation: 0, iconTheme: IconThemeData(color: Colors.black)),
         primarySwatch: Colors.blue,
       ),
-      home: const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const BottomNavBar()
+          : const AuthScreen(),
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:amazon_clone_app/services/auth_service.dart';
 import 'package:amazon_clone_app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/global_variables.dart';
-import '../widgets/custom_textfields.dart';
+import '../../../constants/global_variables.dart';
+import '../../../widgets/custom_textfields.dart';
 
 enum Auth { CreateAccount, SignIn }
 
