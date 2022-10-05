@@ -1,5 +1,6 @@
-import 'package:amazon_clone_app/screens/auth_screen.dart';
-import 'package:amazon_clone_app/screens/home_screen.dart';
+import 'package:amazon_clone_app/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone_app/features/home/screens/home_screen.dart';
+import 'package:amazon_clone_app/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -7,6 +8,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case AuthScreen.routeName:
       return MaterialPageRoute(
         builder: (_) => const AuthScreen(),
+        settings: settings,
+      );
+    case BottomNavBar.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const BottomNavBar(),
         settings: settings,
       );
     case HomeScreen.routeName:
