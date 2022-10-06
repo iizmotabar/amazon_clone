@@ -21,7 +21,10 @@ class AppBarGreetings extends StatelessWidget {
           children: [
             TextSpan(
               text: userName,
-              style: const TextStyle(fontSize: 22, color: Colors.black),
+              style: const TextStyle(
+                  fontSize: 22,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
             )
           ],
         ),
